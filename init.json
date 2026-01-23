@@ -1,0 +1,24 @@
+{
+  "pages": [
+    {
+      "id": 1,
+      "name": "Страница 1",
+      "slug": "page-1",
+      "content": {}
+    },
+    {
+      "id": 2,
+      "name": "Страница 2",
+      "slug": "page-2",
+      "content": {}
+    }
+  ],
+  "settings": {
+    "siteName": "Arctic Theater",
+    "language": "ru",
+    "theme": {
+      "primaryColor": "#000000",
+      "secondaryColor": "#ffffff"
+    }
+  }
+}
