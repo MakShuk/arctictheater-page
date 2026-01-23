@@ -27,6 +27,8 @@ interface AppState {
 
   // Обновление настроек темы
   updateTheme: (primary: string, secondary: string) => void;
+  setThemeMode: (mode: 'light' | 'dark') => void;
+  resetTheme: () => void;
 }
 
 export const useAppStore = create<AppState>()(
@@ -64,7 +66,7 @@ export const useAppStore = create<AppState>()(
           currentView: 'SETTINGS',
         }),
 
-      // Обновление темы (иммутабельно обновляет config)
+      // Обновление цветов темы (иммутабельно обновляет config)
       updateTheme: (primary, secondary) =>
         set((state) => {
           if (!state.config) return state;
@@ -74,8 +76,46 @@ export const useAppStore = create<AppState>()(
               settings: {
                 ...state.config.settings,
                 theme: {
+                  ...state.config.settings.theme,
                   primaryColor: primary,
                   secondaryColor: secondary,
+                },
+              },
+            },
+          };
+        }),
+
+      // Переключение режима темы (светлая/тёмная)
+      setThemeMode: (mode) =>
+        set((state) => {
+          if (!state.config) return state;
+          return {
+            config: {
+              ...state.config,
+              settings: {
+                ...state.config.settings,
+                theme: {
+                  ...state.config.settings.theme,
+                  mode,
+                },
+              },
+            },
+          };
+        }),
+
+      // Сброс темы к стандартным значениям
+      resetTheme: () =>
+        set((state) => {
+          if (!state.config) return state;
+          return {
+            config: {
+              ...state.config,
+              settings: {
+                ...state.config.settings,
+                theme: {
+                  primaryColor: '#FFFFFF',
+                  secondaryColor: '#222222',
+                  mode: 'light',
                 },
               },
             },

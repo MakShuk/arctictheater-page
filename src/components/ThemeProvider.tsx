@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useAppStore } from '../store/useAppStore';
+import '../styles/variables.css';
 
 /**
  * Компонент-провайдер темы.
- * Инжектит CSS переменные в :root на основе настроек из стора.
+ * Применяет CSS переменные и атрибут data-theme на основе настроек из стора.
  */
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const config = useAppStore((s) => s.config);
@@ -11,11 +12,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!config?.settings?.theme) return;
 
-    const { primaryColor, secondaryColor } = config.settings.theme;
+    const { primaryColor, secondaryColor, mode } = config.settings.theme;
 
     // Устанавливаем CSS переменные в :root
     document.documentElement.style.setProperty('--primary-color', primaryColor);
     document.documentElement.style.setProperty('--secondary-color', secondaryColor);
+
+    // Устанавливаем атрибут темы для переключения светлая/тёмная
+    document.documentElement.setAttribute('data-theme', mode || 'light');
   }, [config?.settings?.theme]);
 
   return <>{children}</>;

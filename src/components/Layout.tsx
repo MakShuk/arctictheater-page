@@ -80,10 +80,12 @@ export function Layout() {
 function SettingsPanel() {
   const config = useAppStore((s) => s.config);
   const updateTheme = useAppStore((s) => s.updateTheme);
+  const setThemeMode = useAppStore((s) => s.setThemeMode);
+  const resetTheme = useAppStore((s) => s.resetTheme);
 
   if (!config) return null;
 
-  const { primaryColor, secondaryColor } = config.settings.theme;
+  const { primaryColor, secondaryColor, mode } = config.settings.theme;
 
   const handlePrimaryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateTheme(e.target.value, secondaryColor);
@@ -96,6 +98,27 @@ function SettingsPanel() {
   return (
     <div className="settings-panel">
       <h2>Настройки</h2>
+
+      {/* Переключатель темы */}
+      <div className="settings-group">
+        <span className="settings-label">Тема оформления:</span>
+        <div className="theme-toggle">
+          <button
+            type="button"
+            className={`theme-toggle-btn ${mode === 'light' ? 'active' : ''}`}
+            onClick={() => setThemeMode('light')}
+          >
+            ☀️ Светлая
+          </button>
+          <button
+            type="button"
+            className={`theme-toggle-btn ${mode === 'dark' ? 'active' : ''}`}
+            onClick={() => setThemeMode('dark')}
+          >
+            🌙 Тёмная
+          </button>
+        </div>
+      </div>
 
       <div className="settings-group">
         <label htmlFor="primary-color" className="settings-label">
@@ -121,6 +144,16 @@ function SettingsPanel() {
             className="color-input"
           />
         </label>
+      </div>
+
+      <div className="settings-group">
+        <button
+          type="button"
+          className="btn btn-reset"
+          onClick={resetTheme}
+        >
+          Сбросить к стандартным
+        </button>
       </div>
     </div>
   );

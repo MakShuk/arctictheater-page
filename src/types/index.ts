@@ -9,9 +9,12 @@ export interface Page {
   content: PageContent;
 }
 
+export type ThemeMode = 'light' | 'dark';
+
 export interface Theme {
   primaryColor: string;
   secondaryColor: string;
+  mode: ThemeMode;
 }
 
 export interface Settings {

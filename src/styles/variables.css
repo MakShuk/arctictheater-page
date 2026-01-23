@@ -1,0 +1,216 @@
+/**
+ * Arctic Theater Design System
+ * На основе style.json - "Arctic Dark Community UI"
+ * По умолчанию используется светлая тема
+ */
+
+:root {
+    /* ============================================
+   * БРЕНД ЦВЕТА (Константы)
+   * ============================================ */
+    --brand-teal: #1EA6A4;
+    --brand-teal-hover: #188F8D;
+
+    /* ============================================
+   * НЕЙТРАЛЬНАЯ ПАЛИТРА (Константы)
+   * ============================================ */
+    --neutral-white: #FFFFFF;
+    --neutral-gray-light: #E1E3E6;
+    --neutral-gray-medium: #99A2AD;
+    --neutral-gray-dark: #333333;
+    --neutral-gray-darker: #222222;
+    --neutral-black: #000000;
+
+    /* ============================================
+   * ТИПОГРАФИКА
+   * ============================================ */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+
+    /* Заголовок H1 */
+    --h1-font-size: 19px;
+    --h1-line-height: 24px;
+    --h1-font-weight: 700;
+
+    /* Подзаголовок */
+    --subtitle-font-size: 14px;
+    --subtitle-line-height: 18px;
+    --subtitle-font-weight: 400;
+
+    /* Бренд заголовок */
+    --brand-header-text-transform: uppercase;
+    --brand-header-letter-spacing: 1px;
+
+    /* ============================================
+   * КОМПОНЕНТЫ - Радиусы и отступы
+   * ============================================ */
+    --radius-button: 8px;
+    --radius-card: 12px;
+    --radius-circle: 50%;
+
+    --padding-button: 8px 16px;
+    --padding-button-icon: 8px;
+
+    /* ============================================
+   * АНИМАЦИИ
+   * ============================================ */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+
+    /* ============================================
+   * ТЕНИ
+   * ============================================ */
+    --shadow-modal: 0 4px 24px rgba(0, 0, 0, 0.3);
+
+    /* ============================================
+   * СВЕТЛАЯ ТЕМА (По умолчанию)
+   * ============================================ */
+    --theme-mode: light;
+
+    /* Фоны */
+    --bg-page: var(--neutral-white);
+    --bg-card: var(--neutral-gray-light);
+    --bg-card-header: var(--neutral-gray-darker);
+    --bg-card-body: var(--neutral-white);
+    --bg-modal-overlay: rgba(0, 0, 0, 0.5);
+
+    /* Текст */
+    --text-primary: var(--neutral-gray-darker);
+    --text-secondary: var(--neutral-gray-medium);
+    --text-inverse: var(--neutral-white);
+    --text-brand: var(--brand-teal);
+
+    /* Кнопки */
+    --btn-primary-bg: var(--neutral-gray-darker);
+    --btn-primary-text: var(--neutral-white);
+    --btn-primary-hover-bg: var(--neutral-gray-dark);
+
+    --btn-secondary-bg: var(--neutral-gray-light);
+    --btn-secondary-text: var(--neutral-gray-darker);
+    --btn-secondary-hover-bg: #D1D3D6;
+
+    /* Границы */
+    --border-separator: rgba(0, 0, 0, 0.1);
+    --border-avatar: var(--neutral-white);
+
+    /* Карточки */
+    --card-bg: var(--neutral-white);
+    --card-border: rgba(0, 0, 0, 0.08);
+
+    /* Legacy переменные для обратной совместимости */
+    --primary-color: var(--bg-page);
+    --secondary-color: var(--text-primary);
+}
+
+/* ============================================
+ * ТЁМНАЯ ТЕМА
+ * ============================================ */
+[data-theme="dark"] {
+    --theme-mode: dark;
+
+    /* Фоны */
+    --bg-page: var(--neutral-black);
+    --bg-card: var(--neutral-gray-darker);
+    --bg-card-header: var(--neutral-white);
+    --bg-card-body: var(--neutral-gray-darker);
+    --bg-modal-overlay: rgba(0, 0, 0, 0.8);
+
+    /* Текст */
+    --text-primary: var(--neutral-white);
+    --text-secondary: var(--neutral-gray-medium);
+    --text-inverse: var(--neutral-gray-darker);
+    --text-brand: var(--brand-teal);
+
+    /* Кнопки */
+    --btn-primary-bg: var(--neutral-gray-light);
+    --btn-primary-text: var(--neutral-gray-darker);
+    --btn-primary-hover-bg: #D1D3D6;
+
+    --btn-secondary-bg: var(--neutral-gray-dark);
+    --btn-secondary-text: var(--neutral-white);
+    --btn-secondary-hover-bg: #404040;
+
+    /* Границы */
+    --border-separator: rgba(255, 255, 255, 0.1);
+    --border-avatar: var(--neutral-gray-darker);
+
+    /* Карточки */
+    --card-bg: var(--neutral-gray-darker);
+    --card-border: rgba(255, 255, 255, 0.05);
+
+    /* Legacy переменные для обратной совместимости */
+    --primary-color: var(--bg-page);
+    --secondary-color: var(--text-primary);
+}
+
+/* ============================================
+ * ИКОНКИ
+ * ============================================ */
+:root {
+    --icon-color-default: var(--neutral-gray-medium);
+    --icon-color-active: var(--text-primary);
+}
+
+/* ============================================
+ * БАЗОВЫЕ СТИЛИ
+ * ============================================ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: var(--font-family);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    min-height: 100vh;
+    transition: background-color var(--transition-medium), color var(--transition-medium);
+}
+
+/* ============================================
+ * УТИЛИТАРНЫЕ КЛАССЫ
+ * ============================================ */
+
+/* Текст */
+.text-primary {
+    color: var(--text-primary);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+.text-brand {
+    color: var(--text-brand);
+}
+
+.text-inverse {
+    color: var(--text-inverse);
+}
+
+/* Фоны */
+.bg-page {
+    background-color: var(--bg-page);
+}
+
+.bg-card {
+    background-color: var(--card-bg);
+}
+
+.bg-brand {
+    background-color: var(--brand-teal);
+}
+
+/* Бренд заголовок */
+.brand-header {
+    color: var(--text-brand);
+    text-transform: var(--brand-header-text-transform);
+    letter-spacing: var(--brand-header-letter-spacing);
+}

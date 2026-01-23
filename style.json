@@ -1,0 +1,153 @@
+{
+  "design_system_profile": {
+    "meta": {
+      "name": "Arctic Dark Community UI",
+      "version": "1.0.0",
+      "description": "Строгая двухцветная система с высоким контрастом, сочетающая темную тему интерфейса с чистыми белыми акцентами и специфическим бирюзовым брендингом."
+    },
+    "colors": {
+      "palette": {
+        "brand": {
+          "teal": "#1EA6A4",
+          "teal_hover_inferred": "#188F8D"
+        },
+        "neutral": {
+          "white": "#FFFFFF",
+          "gray_light": "#E1E3E6",
+          "gray_medium": "#99A2AD",
+          "gray_dark": "#333333",
+          "gray_darker": "#222222",
+          "black": "#000000"
+        }
+      },
+      "semantic_mapping": {
+        "backgrounds": {
+          "page_root": "#000000",
+          "card_header": "#FFFFFF",
+          "card_body": "#222222",
+          "modal_overlay": "rgba(0, 0, 0, 0.8)"
+        },
+        "text": {
+          "primary_on_dark": "#FFFFFF",
+          "secondary_on_dark": "#99A2AD",
+          "primary_on_light": "#222222",
+          "brand_text": "#1EA6A4"
+        },
+        "borders": {
+          "avatar_cutout": "#222222",
+          "separator": "rgba(255, 255, 255, 0.1)"
+        }
+      }
+    },
+    "components": {
+      "buttons": {
+        "primary": {
+          "description": "Основная кнопка действия (например, 'Сообщение')",
+          "background": "#E1E3E6",
+          "text_color": "#222222",
+          "border_radius": "8px",
+          "padding": "8px 16px",
+          "font_weight": "500",
+          "hover_state": "background: #D1D3D6 (Inferred darken 5%)"
+        },
+        "secondary": {
+          "description": "Второстепенные действия (например, 'Ещё', иконки)",
+          "background": "#333333",
+          "text_color": "#FFFFFF",
+          "border_radius": "8px",
+          "hover_state": "background: #404040 (Inferred lighten 10%)"
+        },
+        "icon_only": {
+          "background": "#333333",
+          "icon_color": "#FFFFFF",
+          "border_radius": "50%"
+        }
+      },
+      "avatar": {
+        "shape": "circle",
+        "size": "large (approx 120px)",
+        "border": {
+          "color": "#222222",
+          "width": "4px",
+          "style": "solid",
+          "purpose": "Создает эффект выреза (masking) на стыке белого и темного фона"
+        },
+        "placement": "overlap_y_axis",
+        "overlap_value": "-50%"
+      },
+      "cards": {
+        "container": {
+          "border_radius": "12px",
+          "overflow": "hidden",
+          "shadow": "none (Flat design)"
+        },
+        "header_area": {
+          "background": "#FFFFFF",
+          "height_ratio": "approx 65% of total card"
+        },
+        "info_bar": {
+          "background": "#222222",
+          "height_ratio": "approx 35% of total card",
+          "content_alignment": "center_vertical"
+        }
+      }
+    },
+    "typography": {
+      "font_family_stack": [
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "Roboto",
+        "Helvetica Neue",
+        "sans-serif"
+      ],
+      "styles": {
+        "h1_title": {
+          "color": "#FFFFFF",
+          "font_size": "19px",
+          "line_height": "24px",
+          "font_weight": "700"
+        },
+        "subtitle": {
+          "color": "#99A2AD",
+          "font_size": "14px",
+          "line_height": "18px",
+          "font_weight": "400"
+        },
+        "brand_header": {
+          "color": "#1EA6A4",
+          "text_transform": "uppercase",
+          "letter_spacing": "1px"
+        }
+      }
+    },
+    "visual_rules": {
+      "gradients": {
+        "status": "not_detected",
+        "rule": "Использовать сплошные цвета (Solid Colors) для всех поверхностей. Не применять градиенты к кнопкам или фонам карточек."
+      },
+      "shadows": {
+        "status": "minimal",
+        "rule": "Интерфейс плоский (Flat). Тени используются только для модальных окон, но не для элементов внутри карточки."
+      },
+      "icons": {
+        "style": "filled_or_stroke",
+        "color_default": "#99A2AD",
+        "color_active": "#FFFFFF"
+      }
+    },
+    "implementation_guidelines": {
+      "do": [
+        "DO: Использовать цвет #222222 для всех контейнеров нижнего уровня и информационных панелей.",
+        "DO: Применять обводку цвета фона (#222222) к аватару, если он перекрывает два разных фона.",
+        "DO: Использовать #E1E3E6 (Светло-серый) только для ОДНОЙ основной кнопки действия на экране.",
+        "DO: Использовать #333333 (Темно-серый) для всех второстепенных кнопок и кнопок-иконок."
+      ],
+      "do_not": [
+        "DO NOT: Не использовать чисто черный (#000000) для фона карточек/панелей. Используйте #222222.",
+        "DO NOT: Не применять цвет бренда (#1EA6A4) для кнопок действий. Он зарезервирован для логотипа и ссылок.",
+        "DO NOT: Не делать текст кнопок белым на светлой кнопке. Используйте #222222 для контраста.",
+        "DO NOT: Не скруглять углы кнопок полностью (pill-shape), используйте radius 8px (rounded-rect)."
+      ]
+    }
+  }
+}

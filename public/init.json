@@ -17,8 +17,9 @@
     "siteName": "Arctic Theater",
     "language": "ru",
     "theme": {
-      "primaryColor": "#000000",
-      "secondaryColor": "#ffffff"
+      "primaryColor": "#FFFFFF",
+      "secondaryColor": "#222222",
+      "mode": "light"
     }
   }
 }
