@@ -7,7 +7,7 @@ import '../styles/variables.css';
  * Применяет CSS переменные и атрибут data-theme на основе настроек из стора.
  */
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const config = useAppStore((s) => s.config);
+  const config = useAppStore(s => s.config);
 
   useEffect(() => {
     if (!config?.settings?.theme) return;
@@ -16,7 +16,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     // Устанавливаем CSS переменные в :root
     document.documentElement.style.setProperty('--primary-color', primaryColor);
-    document.documentElement.style.setProperty('--secondary-color', secondaryColor);
+    document.documentElement.style.setProperty(
+      '--secondary-color',
+      secondaryColor
+    );
 
     // Устанавливаем атрибут темы для переключения светлая/тёмная
     document.documentElement.setAttribute('data-theme', mode || 'light');

@@ -17,7 +17,9 @@ export function Spinner({ size = 48, color }: SpinnerProps) {
         style={{
           width: size,
           height: size,
-          borderColor: color ? `${color} transparent transparent transparent` : undefined,
+          borderColor: color
+            ? `${color} transparent transparent transparent`
+            : undefined,
         }}
       />
     </div>

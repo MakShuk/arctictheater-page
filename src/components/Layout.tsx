@@ -6,19 +6,21 @@ import './Layout.css';
  * Управляет переключением между представлениями (views).
  */
 export function Layout() {
-  const config = useAppStore((s) => s.config);
-  const currentView = useAppStore((s) => s.currentView);
-  const activePageId = useAppStore((s) => s.activePageId);
-  const navigateToPage = useAppStore((s) => s.navigateToPage);
-  const navigateHome = useAppStore((s) => s.navigateHome);
-  const openSettings = useAppStore((s) => s.openSettings);
+  const config = useAppStore(s => s.config);
+  const currentView = useAppStore(s => s.currentView);
+  const activePageId = useAppStore(s => s.activePageId);
+  const navigateToPage = useAppStore(s => s.navigateToPage);
+  const navigateHome = useAppStore(s => s.navigateHome);
+  const openSettings = useAppStore(s => s.openSettings);
 
   if (!config) {
-    return <div className="layout-error">Ошибка: конфигурация не загружена</div>;
+    return (
+      <div className="layout-error">Ошибка: конфигурация не загружена</div>
+    );
   }
 
   const activePage = activePageId
-    ? config.pages.find((p) => p.id === activePageId)
+    ? config.pages.find(p => p.id === activePageId)
     : null;
 
   return (
@@ -32,7 +34,11 @@ export function Layout() {
           </button>
         )}
         {currentView === 'HOME' && (
-          <button type="button" className="btn btn-settings" onClick={openSettings}>
+          <button
+            type="button"
+            className="btn btn-settings"
+            onClick={openSettings}
+          >
             ⚙️
           </button>
         )}
@@ -43,7 +49,7 @@ export function Layout() {
         {/* HOME View */}
         {currentView === 'HOME' && (
           <div className="home-grid">
-            {config.pages.map((page) => (
+            {config.pages.map(page => (
               <button
                 key={page.id}
                 type="button"
@@ -62,7 +68,9 @@ export function Layout() {
             <h2 className="page-title">{activePage.name}</h2>
             <div className="page-content">
               {/* TODO: Рендеринг контента страницы */}
-              <p>Контент страницы "{activePage.name}" (slug: {activePage.slug})</p>
+              <p>
+                Контент страницы "{activePage.name}" (slug: {activePage.slug})
+              </p>
             </div>
           </div>
         )}
@@ -78,10 +86,10 @@ export function Layout() {
  * Панель настроек для редактирования темы.
  */
 function SettingsPanel() {
-  const config = useAppStore((s) => s.config);
-  const updateTheme = useAppStore((s) => s.updateTheme);
-  const setThemeMode = useAppStore((s) => s.setThemeMode);
-  const resetTheme = useAppStore((s) => s.resetTheme);
+  const config = useAppStore(s => s.config);
+  const updateTheme = useAppStore(s => s.updateTheme);
+  const setThemeMode = useAppStore(s => s.setThemeMode);
+  const resetTheme = useAppStore(s => s.resetTheme);
 
   if (!config) return null;
 
@@ -147,11 +155,7 @@ function SettingsPanel() {
       </div>
 
       <div className="settings-group">
-        <button
-          type="button"
-          className="btn btn-reset"
-          onClick={resetTheme}
-        >
+        <button type="button" className="btn btn-reset" onClick={resetTheme}>
           Сбросить к стандартным
         </button>
       </div>

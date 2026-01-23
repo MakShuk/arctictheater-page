@@ -1,6 +1,4 @@
-export interface PageContent {
-  // Расширить по мере необходимости
-}
+export type PageContent = Record<string, unknown>;
 
 export interface Page {
   id: number;

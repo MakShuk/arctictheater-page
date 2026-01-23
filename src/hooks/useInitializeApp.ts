@@ -11,10 +11,10 @@ const SIMULATED_DELAY = 500;
  * или из init.json при первом запуске.
  */
 export function useInitializeApp() {
-  const config = useAppStore((s) => s.config);
-  const isLoading = useAppStore((s) => s.isLoading);
-  const setConfig = useAppStore((s) => s.setConfig);
-  const setLoading = useAppStore((s) => s.setLoading);
+  const config = useAppStore(s => s.config);
+  const isLoading = useAppStore(s => s.isLoading);
+  const setConfig = useAppStore(s => s.setConfig);
+  const setLoading = useAppStore(s => s.setLoading);
 
   // Предотвращаем повторный запуск в StrictMode
   const initialized = useRef(false);
@@ -26,14 +26,14 @@ export function useInitializeApp() {
     const initialize = async () => {
       // Zustand persist автоматически гидрирует config из localStorage.
       // Даём небольшую задержку для гидрации
-      await new Promise((r) => setTimeout(r, 50));
+      await new Promise(r => setTimeout(r, 50));
 
       // Проверяем, загрузился ли конфиг из localStorage
       const currentConfig = useAppStore.getState().config;
 
       if (currentConfig) {
         // Конфиг есть в localStorage — просто показываем спиннер немного
-        await new Promise((r) => setTimeout(r, SIMULATED_DELAY));
+        await new Promise(r => setTimeout(r, SIMULATED_DELAY));
         setLoading(false);
         return;
       }
@@ -48,7 +48,7 @@ export function useInitializeApp() {
         const data: AppConfig = await response.json();
 
         // Искусственная задержка для UX
-        await new Promise((r) => setTimeout(r, SIMULATED_DELAY));
+        await new Promise(r => setTimeout(r, SIMULATED_DELAY));
 
         setConfig(data);
       } catch (error) {

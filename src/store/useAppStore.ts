@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
+import { createJSONStorage, persist } from 'zustand/middleware';
 import type { AppConfig } from '../types';
 
 // Возможные представления (views)
@@ -33,7 +33,7 @@ interface AppState {
 
 export const useAppStore = create<AppState>()(
   persist(
-    (set) => ({
+    set => ({
       // Начальное состояние
       config: null,
       isLoading: true,
@@ -41,13 +41,13 @@ export const useAppStore = create<AppState>()(
       activePageId: null,
 
       // Базовые сеттеры
-      setConfig: (config) => set({ config }),
-      setLoading: (isLoading) => set({ isLoading }),
-      setCurrentView: (currentView) => set({ currentView }),
-      setActivePageId: (activePageId) => set({ activePageId }),
+      setConfig: config => set({ config }),
+      setLoading: isLoading => set({ isLoading }),
+      setCurrentView: currentView => set({ currentView }),
+      setActivePageId: activePageId => set({ activePageId }),
 
       // Навигация на страницу
-      navigateToPage: (id) =>
+      navigateToPage: id =>
         set({
           activePageId: id,
           currentView: 'PAGE_VIEW',
@@ -68,7 +68,7 @@ export const useAppStore = create<AppState>()(
 
       // Обновление цветов темы (иммутабельно обновляет config)
       updateTheme: (primary, secondary) =>
-        set((state) => {
+        set(state => {
           if (!state.config) return state;
           return {
             config: {
@@ -86,8 +86,8 @@ export const useAppStore = create<AppState>()(
         }),
 
       // Переключение режима темы (светлая/тёмная)
-      setThemeMode: (mode) =>
-        set((state) => {
+      setThemeMode: mode =>
+        set(state => {
           if (!state.config) return state;
           return {
             config: {
@@ -105,7 +105,7 @@ export const useAppStore = create<AppState>()(
 
       // Сброс темы к стандартным значениям
       resetTheme: () =>
-        set((state) => {
+        set(state => {
           if (!state.config) return state;
           return {
             config: {
@@ -127,7 +127,7 @@ export const useAppStore = create<AppState>()(
       storage: createJSONStorage(() => localStorage),
 
       // Сохраняем ТОЛЬКО config — остальное рантайм-состояние
-      partialize: (state) => ({ config: state.config }),
+      partialize: state => ({ config: state.config }),
     }
   )
 );
