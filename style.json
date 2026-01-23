@@ -94,6 +94,8 @@
     },
     "typography": {
       "font_family_stack": [
+        "Trajan Pro",
+        "Cinzel",
         "-apple-system",
         "BlinkMacSystemFont",
         "Roboto",

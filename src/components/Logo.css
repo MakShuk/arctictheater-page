@@ -1,0 +1,35 @@
+.logo {
+    display: inline-block;
+    object-fit: contain;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.logo[role="button"] {
+    cursor: pointer;
+}
+
+.logo[role="button"]:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 2px 8px rgba(37, 166, 166, 0.4));
+}
+
+.logo[role="button"]:focus {
+    outline: 2px solid var(--color-primary, #25a6a6);
+    outline-offset: 4px;
+}
+
+/* Размеры */
+.logo--small {
+    width: 32px;
+    height: 32px;
+}
+
+.logo--medium {
+    width: 48px;
+    height: 48px;
+}
+
+.logo--large {
+    width: 72px;
+    height: 72px;
+}

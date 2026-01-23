@@ -24,8 +24,9 @@
   /* ============================================
    * ТИПОГРАФИКА
    * ============================================ */
-  --font-family:
-    -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
+  --font-family-sans: -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", sans-serif;
+  --font-family-serif: "Trajan Pro", "Cinzel", serif;
+  --font-family: var(--font-family-sans);
 
   /* Заголовок H1 */
   --h1-font-size: 19px;
@@ -166,6 +167,16 @@ html {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.brand-header {
+  font-family: var(--font-family-serif);
 }
 
 body {

@@ -1,4 +1,5 @@
 import { useAppStore } from '../store/useAppStore';
+import { Logo } from './Logo';
 import './Layout.css';
 
 /**
@@ -27,7 +28,10 @@ export function Layout() {
     <div className="layout">
       {/* Header */}
       <header className="layout-header">
-        <h1 className="layout-title">{config.settings.siteName}</h1>
+        <div className="layout-brand">
+          <Logo size="medium" onClick={navigateHome} />
+          <h1 className="layout-title">{config.settings.siteName}</h1>
+        </div>
         {currentView !== 'HOME' && (
           <button type="button" className="btn btn-home" onClick={navigateHome}>
             ← Домой
