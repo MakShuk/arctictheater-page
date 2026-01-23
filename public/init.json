@@ -2,9 +2,13 @@
   "pages": [
     {
       "id": 1,
-      "name": "Страница 1",
-      "slug": "page-1",
-      "content": {}
+      "name": "QR-код",
+      "slug": "qr-code",
+      "content": {
+        "type": "qr-page",
+        "vkGroupUrl": "https://vk.com/arctictheater",
+        "vkGroupName": "Arctic Theater ВКонтакте"
+      }
     },
     {
       "id": 2,

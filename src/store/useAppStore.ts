@@ -26,9 +26,10 @@ interface AppState {
   openSettings: () => void;
 
   // Обновление настроек темы
-  updateTheme: (primary: string, secondary: string) => void;
   setThemeMode: (mode: 'light' | 'dark') => void;
-  resetTheme: () => void;
+
+  // Сброс к настройкам по умолчанию (из init.json)
+  resetToDefault: () => Promise<void>;
 }
 
 export const useAppStore = create<AppState>()(
@@ -66,25 +67,6 @@ export const useAppStore = create<AppState>()(
           currentView: 'SETTINGS',
         }),
 
-      // Обновление цветов темы (иммутабельно обновляет config)
-      updateTheme: (primary, secondary) =>
-        set(state => {
-          if (!state.config) return state;
-          return {
-            config: {
-              ...state.config,
-              settings: {
-                ...state.config.settings,
-                theme: {
-                  ...state.config.settings.theme,
-                  primaryColor: primary,
-                  secondaryColor: secondary,
-                },
-              },
-            },
-          };
-        }),
-
       // Переключение режима темы (светлая/тёмная)
       setThemeMode: mode =>
         set(state => {
@@ -103,24 +85,19 @@ export const useAppStore = create<AppState>()(
           };
         }),
 
-      // Сброс темы к стандартным значениям
-      resetTheme: () =>
-        set(state => {
-          if (!state.config) return state;
-          return {
-            config: {
-              ...state.config,
-              settings: {
-                ...state.config.settings,
-                theme: {
-                  primaryColor: '#FFFFFF',
-                  secondaryColor: '#222222',
-                  mode: 'light',
-                },
-              },
-            },
-          };
-        }),
+      // Сброс к настройкам по умолчанию (загрузка init.json)
+      resetToDefault: async () => {
+        try {
+          const response = await fetch('/init.json');
+          if (!response.ok) {
+            throw new Error('Ошибка загрузки init.json');
+          }
+          const defaultConfig = await response.json();
+          set({ config: defaultConfig });
+        } catch (error) {
+          console.error('Не удалось сбросить настройки:', error);
+        }
+      },
     }),
     {
       name: 'app_config', // Ключ в localStorage

@@ -1,5 +1,6 @@
 import { useAppStore } from '../store/useAppStore';
 import { Logo } from './Logo';
+import { QRPage } from './QRPage';
 import './Layout.css';
 
 /**
@@ -69,12 +70,22 @@ export function Layout() {
         {/* PAGE_VIEW */}
         {currentView === 'PAGE_VIEW' && activePage && (
           <div className="page-view">
-            <h2 className="page-title">{activePage.name}</h2>
+            {/* Скрываем заголовок для QR-страницы */}
+            {activePage.content?.type !== 'qr-page' && (
+              <h2 className="page-title">{activePage.name}</h2>
+            )}
             <div className="page-content">
-              {/* TODO: Рендеринг контента страницы */}
-              <p>
-                Контент страницы "{activePage.name}" (slug: {activePage.slug})
-              </p>
+              {/* Рендеринг QR-страницы */}
+              {activePage.content?.type === 'qr-page' ? (
+                <QRPage
+                  vkGroupUrl={activePage.content.vkGroupUrl as string}
+                  vkGroupName={activePage.content.vkGroupName as string}
+                />
+              ) : (
+                <p>
+                  Контент страницы "{activePage.name}" (slug: {activePage.slug})
+                </p>
+              )}
             </div>
           </div>
         )}
@@ -91,21 +102,12 @@ export function Layout() {
  */
 function SettingsPanel() {
   const config = useAppStore(s => s.config);
-  const updateTheme = useAppStore(s => s.updateTheme);
   const setThemeMode = useAppStore(s => s.setThemeMode);
-  const resetTheme = useAppStore(s => s.resetTheme);
+  const resetToDefault = useAppStore(s => s.resetToDefault);
 
   if (!config) return null;
 
-  const { primaryColor, secondaryColor, mode } = config.settings.theme;
-
-  const handlePrimaryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    updateTheme(e.target.value, secondaryColor);
-  };
-
-  const handleSecondaryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    updateTheme(primaryColor, e.target.value);
-  };
+  const { mode } = config.settings.theme;
 
   return (
     <div className="settings-panel">
@@ -132,34 +134,9 @@ function SettingsPanel() {
         </div>
       </div>
 
+      {/* Кнопка сброса */}
       <div className="settings-group">
-        <label htmlFor="primary-color" className="settings-label">
-          Основной цвет:
-          <input
-            id="primary-color"
-            type="color"
-            value={primaryColor}
-            onChange={handlePrimaryChange}
-            className="color-input"
-          />
-        </label>
-      </div>
-
-      <div className="settings-group">
-        <label htmlFor="secondary-color" className="settings-label">
-          Вторичный цвет:
-          <input
-            id="secondary-color"
-            type="color"
-            value={secondaryColor}
-            onChange={handleSecondaryChange}
-            className="color-input"
-          />
-        </label>
-      </div>
-
-      <div className="settings-group">
-        <button type="button" className="btn btn-reset" onClick={resetTheme}>
+        <button type="button" className="btn btn-reset" onClick={resetToDefault}>
           Сбросить к стандартным
         </button>
       </div>
