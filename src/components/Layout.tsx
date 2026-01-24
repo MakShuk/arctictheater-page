@@ -122,10 +122,7 @@ export function Layout() {
             <div className="page-content">
               {/* Рендеринг QR-страницы */}
               {activePage.content?.type === 'qr-page' ? (
-                <QRPage
-                  vkGroupUrl={activePage.content.vkGroupUrl as string}
-                  vkGroupName={activePage.content.vkGroupName as string}
-                />
+                <QRPage />
               ) : activePage.content?.type === 'emotions-page' ? (
                 <EmotionsPage
                   pageId={activePage.id}

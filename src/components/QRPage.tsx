@@ -1,19 +1,11 @@
 import './QRPage.css';
 import QRCode from '../assets/QR.svg';
 
-interface QRPageProps {
-  vkGroupUrl?: string;
-  vkGroupName?: string;
-}
-
 /**
  * Компонент страницы QR-кода.
  * Отображает QR-код для перехода в группу ВК.
  */
-export function QRPage({ vkGroupUrl, vkGroupName }: QRPageProps) {
-  const url = vkGroupUrl || 'https://vk.com/arctictheater';
-  const name = vkGroupName || 'Arctic Theater';
-
+export function QRPage() {
   return (
     <div className="qr-page">
       <div className="qr-container">
