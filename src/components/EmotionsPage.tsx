@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useAppStore } from '../store/useAppStore';
+import { X } from 'lucide-react';
 import './EmotionsPage.css';
 
 interface EmotionsPageProps {
@@ -96,7 +97,7 @@ export function EmotionsPage({ pageId, emotions }: EmotionsPageProps) {
               }}
               title="Сбросить эмоции"
             >
-              ×
+              <X size={20} />
             </button>
           )}
 

@@ -2,6 +2,8 @@ import { useAppStore } from '../store/useAppStore';
 import { Logo } from './Logo';
 import { QRPage } from './QRPage';
 import { EmotionsPage } from './EmotionsPage';
+import { ArrowLeft, Settings, Maximize, Minimize } from 'lucide-react';
+import { useState, useCallback, useEffect } from 'react';
 import './Layout.css';
 
 /**
@@ -15,6 +17,27 @@ export function Layout() {
   const navigateToPage = useAppStore(s => s.navigateToPage);
   const navigateHome = useAppStore(s => s.navigateHome);
   const openSettings = useAppStore(s => s.openSettings);
+
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Следим за изменениями полноэкранного режима (например, по F11)
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = useCallback(() => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(err => {
+        console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  }, []);
 
   if (!config) {
     return (
@@ -34,20 +57,38 @@ export function Layout() {
           <Logo size="medium" onClick={navigateHome} />
           <h1 className="layout-title">{config.settings.siteName}</h1>
         </div>
-        {currentView !== 'HOME' && (
-          <button type="button" className="btn btn-home" onClick={navigateHome}>
-            ← Домой
-          </button>
-        )}
-        {currentView === 'HOME' && (
+        
+        <div className="layout-controls">
+          {currentView !== 'HOME' && (
+            <button
+              type="button"
+              className="btn btn-home"
+              onClick={navigateHome}
+              aria-label="На главную"
+            >
+              <ArrowLeft size={24} />
+            </button>
+          )}
+          {currentView === 'HOME' && (
+            <button
+              type="button"
+              className="btn btn-settings"
+              onClick={openSettings}
+              aria-label="Настройки"
+            >
+              <Settings size={24} />
+            </button>
+          )}
+
           <button
             type="button"
-            className="btn btn-settings"
-            onClick={openSettings}
+            className="btn btn-home" // Используем тот же класс для стиля
+            onClick={toggleFullscreen}
+            aria-label={isFullscreen ? "Выйти из полноэкранного режима" : "На весь экран"}
           >
-            ⚙️
+           {isFullscreen ? <Minimize size={24} /> : <Maximize size={24} />}
           </button>
-        )}
+        </div>
       </header>
 
       {/* Main Content */}

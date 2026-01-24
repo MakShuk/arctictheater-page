@@ -43,15 +43,23 @@
   letter-spacing: var(--brand-header-letter-spacing);
 }
 
+.layout-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 /* Buttons */
 .btn {
   padding: var(--padding-button);
-  border: 1px solid var(--text-primary);
+  border: none;
   border-radius: var(--radius-button);
   background: transparent;
   color: var(--text-primary);
+  opacity: 0.3;
+  /* Делаем кнопки полупрозрачными по умолчанию */
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-medium);
   font-family: var(--font-family);
   font-weight: 500;
 }
@@ -59,30 +67,29 @@
 .btn:hover {
   background-color: var(--text-primary);
   color: var(--bg-page);
+  opacity: 1;
+  /* Полная видимость при наведении */
 }
 
 .btn-primary {
   background-color: var(--btn-primary-bg);
   color: var(--btn-primary-text);
-  border-color: var(--btn-primary-bg);
+  opacity: 1;
+  /* Основные кнопки всегда видны */
 }
 
 .btn-primary:hover {
   background-color: var(--btn-primary-hover-bg);
-  border-color: var(--btn-primary-hover-bg);
-  color: var(--btn-primary-text);
 }
 
 .btn-secondary {
   background-color: var(--btn-secondary-bg);
   color: var(--btn-secondary-text);
-  border-color: var(--btn-secondary-bg);
+  opacity: 1;
 }
 
 .btn-secondary:hover {
   background-color: var(--btn-secondary-hover-bg);
-  border-color: var(--btn-secondary-hover-bg);
-  color: var(--btn-secondary-text);
 }
 
 .btn-settings {
@@ -90,6 +97,20 @@
   padding: var(--padding-button-icon);
   line-height: 1;
   border-radius: var(--radius-circle);
+  /* Специфичные стили для кнопки настроек */
+  color: var(--text-secondary);
+}
+
+.btn-settings:hover {
+  background: rgba(0, 0, 0, 0.05);
+  /* Легкий фон при наведении */
+  color: var(--text-primary);
+  transform: rotate(45deg);
+  /* Небольшая анимация */
+}
+
+[data-theme="dark"] .btn-settings:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* Main */
@@ -225,9 +246,61 @@
   background: rgba(255, 100, 100, 0.15);
   border-color: rgba(255, 150, 150, 0.5);
   color: #ff6464;
+  opacity: 1;
+  /* Кнопка сброса всегда видна */
 }
 
 .btn-reset:hover {
   background: rgba(255, 100, 100, 0.3);
   color: #ff4444;
+}
+
+/* Home Button - Stealth Glassmorphism */
+.btn-home {
+  /* Полная прозрачность по умолчанию для "презентационного" вида */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  opacity: 0.2;
+  /* Очень низкая видимость */
+
+  /* Круглая форма */
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+
+  /* Центрирование */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+
+  /* Плавность появления */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-home:hover {
+  /* Эффект стекла при наведении */
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+.btn-home:active {
+  transform: scale(0.95);
+}
+
+/* Адаптация для темной темы */
+[data-theme="dark"] .btn-home {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .btn-home:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
 }

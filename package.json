@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "file-saver": "^2.0.5",
+    "lucide-react": "^0.563.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "zustand": "^5.0.10"
