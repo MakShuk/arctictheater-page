@@ -40,7 +40,7 @@ export function useInitializeApp() {
 
       // Конфиг отсутствует — загружаем из init.json
       try {
-        const response = await fetch('/init.json');
+        const response = await fetch(`${import.meta.env.BASE_URL}init.json`);
         if (!response.ok) {
           throw new Error(`Failed to load init.json: ${response.status}`);
         }

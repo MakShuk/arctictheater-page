@@ -149,7 +149,7 @@ export const useAppStore = create<AppState>()(
       // Сброс к настройкам по умолчанию (загрузка init.json)
       resetToDefault: async () => {
         try {
-          const response = await fetch('/init.json');
+          const response = await fetch(`${import.meta.env.BASE_URL}init.json`);
           if (!response.ok) {
             throw new Error('Ошибка загрузки init.json');
           }
