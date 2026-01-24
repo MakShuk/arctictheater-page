@@ -98,6 +98,13 @@
   --card-bg: var(--neutral-white);
   --card-border: rgba(0, 0, 0, 0.08);
 
+  /* Дополнительные переменные для компонентов */
+  --accent-color: var(--brand-teal);
+  --accent-light: #4ec5c3;
+  --bg-primary: var(--neutral-white);
+  --bg-secondary: var(--neutral-gray-light);
+  --border-color: rgba(0, 0, 0, 0.12);
+
   /* Legacy переменные для обратной совместимости */
   --primary-color: var(--bg-page);
   --secondary-color: var(--text-primary);
@@ -138,6 +145,13 @@
   /* Карточки */
   --card-bg: var(--neutral-gray-darker);
   --card-border: rgba(255, 255, 255, 0.05);
+
+  /* Дополнительные переменные для компонентов */
+  --accent-color: var(--brand-teal);
+  --accent-light: #4ec5c3;
+  --bg-primary: var(--neutral-black);
+  --bg-secondary: var(--neutral-gray-darker);
+  --border-color: rgba(255, 255, 255, 0.15);
 
   /* Legacy переменные для обратной совместимости */
   --primary-color: var(--bg-page);

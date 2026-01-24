@@ -28,6 +28,10 @@ interface AppState {
   // Обновление настроек темы
   setThemeMode: (mode: 'light' | 'dark') => void;
 
+  // Работа с эмоциями
+  generateEmotion: (pageId: number, emotion: string) => void;
+  resetEmotions: (pageId: number) => void;
+
   // Сброс к настройкам по умолчанию (из init.json)
   resetToDefault: () => Promise<void>;
 }
@@ -81,6 +85,63 @@ export const useAppStore = create<AppState>()(
                   mode,
                 },
               },
+            },
+          };
+        }),
+
+      // Генерация новой эмоции
+      generateEmotion: (pageId, emotion) =>
+        set(state => {
+          if (!state.config) return state;
+
+          const updatedPages = state.config.pages.map(page => {
+            if (page.id === pageId) {
+              const content = page.content as any;
+              const generatedEmotions = content.generatedEmotions || [];
+              
+              return {
+                ...page,
+                content: {
+                  ...content,
+                  generatedEmotions: [...generatedEmotions, emotion],
+                },
+              };
+            }
+            return page;
+          });
+
+          return {
+            config: {
+              ...state.config,
+              pages: updatedPages,
+            },
+          };
+        }),
+
+      // Сброс истории эмоций
+      resetEmotions: pageId =>
+        set(state => {
+          if (!state.config) return state;
+
+          const updatedPages = state.config.pages.map(page => {
+            if (page.id === pageId) {
+              const content = page.content as any;
+              
+              return {
+                ...page,
+                content: {
+                  ...content,
+                  generatedEmotions: [],
+                },
+              };
+            }
+            return page;
+          });
+
+          return {
+            config: {
+              ...state.config,
+              pages: updatedPages,
             },
           };
         }),

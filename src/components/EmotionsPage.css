@@ -1,0 +1,240 @@
+/* ============================================
+   Emotions Page Styles
+   ============================================ */
+
+.emotions-page {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.emotions-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text-primary);
+    margin: 0 0 2rem 0;
+    font-family: var(--font-family-serif);
+}
+
+.emotions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.emotion-display {
+    width: 100%;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    padding: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.emotion-display.clickable {
+    cursor: pointer;
+}
+
+.emotion-display.clickable:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-color: var(--accent-color);
+}
+
+.emotion-display.clickable:active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.emotion-display.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Незаметный крестик сброса (в правом верхнем углу поля) */
+.btn-reset-subtle {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    line-height: 1;
+    opacity: 0.2;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.btn-reset-subtle:hover {
+    opacity: 0.5;
+}
+
+.btn-reset-subtle:active {
+    opacity: 0.8;
+}
+
+/* Плейсхолдер */
+.emotion-placeholder {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Лоадер с анимацией */
+.emotion-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.shimmer {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(90deg,
+            var(--accent-color) 0%,
+            var(--accent-light) 50%,
+            var(--accent-color) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+        transform: scale(0.8);
+    }
+
+    50% {
+        background-position: 0 0;
+        transform: scale(1);
+    }
+
+    100% {
+        background-position: 200% 0;
+        transform: scale(0.8);
+    }
+}
+
+.loader-text {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Результат с анимацией появления */
+.emotion-result {
+    animation: fadeInBounce 0.6s ease-out;
+}
+
+.emotion-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--accent-color);
+    margin: 0;
+    line-height: 1.3;
+}
+
+@keyframes fadeInBounce {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-30px);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1) translateY(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ============================================
+   Адаптивность
+   ============================================ */
+
+@media (max-width: 768px) {
+    .emotions-page {
+        padding: 1rem 0.5rem;
+    }
+
+    .emotions-title {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .emotion-display {
+        min-height: 280px;
+        padding: 1.5rem;
+    }
+
+    .emotion-text {
+        font-size: 2rem;
+    }
+
+    .shimmer {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .emotions-title {
+        font-size: 1.5rem;
+    }
+
+    .emotion-display {
+        min-height: 220px;
+    }
+
+    .emotion-text {
+        font-size: 1.5rem;
+    }
+
+    .shimmer {
+        width: 120px;
+        height: 120px;
+    }
+
+    .loader-text {
+        font-size: 1rem;
+    }
+
+    .emotion-placeholder p {
+        font-size: 1rem;
+    }
+}
