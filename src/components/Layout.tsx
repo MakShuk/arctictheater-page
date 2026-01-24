@@ -2,6 +2,7 @@ import { useAppStore } from '../store/useAppStore';
 import { Logo } from './Logo';
 import { QRPage } from './QRPage';
 import { EmotionsPage } from './EmotionsPage';
+import { EventsPage } from './EventsPage';
 import { ArrowLeft, Settings, Maximize, Minimize } from 'lucide-react';
 import { useState, useCallback, useEffect } from 'react';
 import './Layout.css';
@@ -112,9 +113,10 @@ export function Layout() {
         {/* PAGE_VIEW */}
         {currentView === 'PAGE_VIEW' && activePage && (
           <div className="page-view">
-            {/* Скрываем заголовок для QR-страницы и страницы эмоций */}
+            {/* Скрываем заголовок для QR-страницы, страницы эмоций и событий */}
             {activePage.content?.type !== 'qr-page' && 
-             activePage.content?.type !== 'emotions-page' && (
+             activePage.content?.type !== 'emotions-page' &&
+             activePage.content?.type !== 'events-page' && (
               <h2 className="page-title">{activePage.name}</h2>
             )}
             <div className="page-content">
@@ -128,6 +130,10 @@ export function Layout() {
                 <EmotionsPage
                   pageId={activePage.id}
                   emotions={activePage.content.emotions as string[]}
+                />
+              ) : activePage.content?.type === 'events-page' ? (
+                <EventsPage
+                  events={activePage.content.events as { id: number; title: string; date: string; time: string; city: string; description: string; link?: string }[]}
                 />
               ) : (
                 <p>
