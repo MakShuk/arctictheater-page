@@ -27,6 +27,11 @@
     height: 280px;
     max-width: 100%;
     display: block;
+    border-radius: 0.875rem;
+}
+
+[data-theme="dark"] .qr-container {
+    background: #ffffff;
 }
 
 .qr-info {
