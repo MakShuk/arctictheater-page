@@ -3,7 +3,14 @@ import { Logo } from './Logo';
 import { QRPage } from './QRPage';
 import { EmotionsPage } from './EmotionsPage';
 import { EventsPage } from './EventsPage';
-import { ArrowLeft, Settings, Maximize, Minimize } from 'lucide-react';
+import {
+  ArrowLeft,
+  Settings,
+  Maximize,
+  Minimize,
+  Moon,
+  Sun,
+} from 'lucide-react';
 import { useState, useCallback, useEffect } from 'react';
 import './Layout.css';
 
@@ -18,6 +25,8 @@ export function Layout() {
   const navigateToPage = useAppStore(s => s.navigateToPage);
   const navigateHome = useAppStore(s => s.navigateHome);
   const openSettings = useAppStore(s => s.openSettings);
+  const themeMode = useAppStore(s => s.config?.settings.theme.mode ?? 'light');
+  const setThemeMode = useAppStore(s => s.setThemeMode);
 
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -39,6 +48,10 @@ export function Layout() {
       document.exitFullscreen();
     }
   }, []);
+
+  const toggleTheme = useCallback(() => {
+    setThemeMode(themeMode === 'light' ? 'dark' : 'light');
+  }, [setThemeMode, themeMode]);
 
   if (!config) {
     return (
@@ -80,6 +93,20 @@ export function Layout() {
               <Settings size={24} />
             </button>
           )}
+
+          <button
+            type="button"
+            className="btn btn-theme"
+            onClick={toggleTheme}
+            aria-label={
+              themeMode === 'light'
+                ? 'Switch to dark theme'
+                : 'Switch to light theme'
+            }
+            title={themeMode === 'light' ? 'Dark theme' : 'Light theme'}
+          >
+            {themeMode === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+          </button>
 
           <button
             type="button"

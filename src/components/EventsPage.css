@@ -7,7 +7,7 @@
 }
 
 .events-empty {
-    color: var(--color-text-secondary, #666);
+    color: var(--text-secondary);
     font-size: 1.125rem;
 }
 
@@ -20,8 +20,8 @@
 }
 
 .event-card {
-    background: var(--color-background);
-    border: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 1rem;
     padding: 1.5rem;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -45,7 +45,7 @@
     gap: 1rem;
     margin-bottom: 0.75rem;
     font-size: 0.95rem;
-    color: var(--color-text-secondary, #666);
+    color: var(--text-secondary);
 }
 
 .event-city {
@@ -64,14 +64,14 @@
 
 .event-description {
     font-size: 1rem;
-    color: var(--color-foreground);
+    color: var(--text-primary);
     margin: 0 0 1rem 0;
     line-height: 1.5;
 }
 
 .event-link {
     display: inline-block;
-    color: var(--color-accent, #4a76a8);
+    color: var(--accent-color);
     text-decoration: none;
     font-weight: 500;
     transition: opacity 0.2s ease;

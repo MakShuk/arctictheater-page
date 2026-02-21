@@ -113,6 +113,20 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
+.btn-theme {
+  padding: var(--padding-button-icon);
+  line-height: 1;
+  border-radius: var(--radius-circle);
+  color: var(--text-secondary);
+  opacity: 0.45;
+}
+
+.btn-theme:hover {
+  opacity: 1;
+  background: var(--btn-secondary-bg);
+  color: var(--text-primary);
+}
+
 /* Main */
 .layout-main {
   padding: 2rem;

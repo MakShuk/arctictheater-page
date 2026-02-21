@@ -14,7 +14,7 @@
 }
 
 .logo[role="button"]:focus {
-    outline: 2px solid var(--color-primary, #25a6a6);
+    outline: 2px solid var(--accent-color);
     outline-offset: 4px;
 }
 
