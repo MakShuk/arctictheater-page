@@ -184,6 +184,14 @@
           }
         ]
       }
+    },
+    {
+      "id": 4,
+      "name": "Генератор чисел",
+      "slug": "number-generator",
+      "content": {
+        "type": "number-generator-page"
+      }
     }
   ],
   "settings": {
