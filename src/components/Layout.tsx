@@ -3,6 +3,7 @@ import { Logo } from './Logo';
 import { QRPage } from './QRPage';
 import { EmotionsPage } from './EmotionsPage';
 import { EventsPage } from './EventsPage';
+import { NumberGeneratorPage } from './NumberGeneratorPage';
 import {
   ArrowLeft,
   Settings,
@@ -71,7 +72,7 @@ export function Layout() {
           <Logo size="medium" onClick={navigateHome} />
           <h1 className="layout-title">{config.settings.siteName}</h1>
         </div>
-        
+
         <div className="layout-controls">
           {currentView !== 'HOME' && (
             <button
@@ -141,9 +142,10 @@ export function Layout() {
         {currentView === 'PAGE_VIEW' && activePage && (
           <div className="page-view">
             {/* Скрываем заголовок для QR-страницы, страницы эмоций и событий */}
-            {activePage.content?.type !== 'qr-page' && 
-             activePage.content?.type !== 'emotions-page' &&
-             activePage.content?.type !== 'events-page' && (
+             {activePage.content?.type !== 'qr-page' &&
+              activePage.content?.type !== 'emotions-page' &&
+             activePage.content?.type !== 'events-page' &&
+             activePage.content?.type !== 'number-generator-page' && (
               <h2 className="page-title">{activePage.name}</h2>
             )}
             <div className="page-content">
@@ -159,6 +161,8 @@ export function Layout() {
                 <EventsPage
                   events={activePage.content.events as { id: number; title: string; date: string; time: string; city: string; description: string; link?: string }[]}
                 />
+              ) : activePage.content?.type === 'number-generator-page' ? (
+                <NumberGeneratorPage />
               ) : (
                 <p>
                   Контент страницы "{activePage.name}" (slug: {activePage.slug})
