@@ -63,6 +63,7 @@ export function Layout() {
   const activePage = activePageId
     ? config.pages.find(p => p.id === activePageId)
     : null;
+  const activePageType = activePage?.content?.type;
 
   return (
     <div className="layout">
@@ -140,28 +141,28 @@ export function Layout() {
 
         {/* PAGE_VIEW */}
         {currentView === 'PAGE_VIEW' && activePage && (
-          <div className="page-view">
+          <div className={`page-view ${activePageType === 'events-page' ? 'page-view-events' : ''}`}>
             {/* Скрываем заголовок для QR-страницы, страницы эмоций и событий */}
-             {activePage.content?.type !== 'qr-page' &&
-              activePage.content?.type !== 'emotions-page' &&
-             activePage.content?.type !== 'events-page' &&
-             activePage.content?.type !== 'number-generator-page' && (
+             {activePageType !== 'qr-page' &&
+              activePageType !== 'emotions-page' &&
+             activePageType !== 'events-page' &&
+             activePageType !== 'number-generator-page' && (
               <h2 className="page-title">{activePage.name}</h2>
             )}
-            <div className="page-content">
+            <div className={`page-content ${activePageType === 'events-page' ? 'page-content-events' : ''}`}>
               {/* Рендеринг QR-страницы */}
-              {activePage.content?.type === 'qr-page' ? (
+              {activePageType === 'qr-page' ? (
                 <QRPage />
-              ) : activePage.content?.type === 'emotions-page' ? (
+              ) : activePageType === 'emotions-page' ? (
                 <EmotionsPage
                   pageId={activePage.id}
                   emotions={activePage.content.emotions as string[]}
                 />
-              ) : activePage.content?.type === 'events-page' ? (
+              ) : activePageType === 'events-page' ? (
                 <EventsPage
                   events={activePage.content.events as { id: number; title: string; date: string; time: string; city: string; description: string; link?: string }[]}
                 />
-              ) : activePage.content?.type === 'number-generator-page' ? (
+              ) : activePageType === 'number-generator-page' ? (
                 <NumberGeneratorPage />
               ) : (
                 <p>

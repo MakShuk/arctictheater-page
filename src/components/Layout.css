@@ -1,6 +1,8 @@
 /* Layout */
 .layout {
-  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
   background-color: var(--bg-page);
   color: var(--text-primary);
   transition:
@@ -129,6 +131,8 @@
 
 /* Main */
 .layout-main {
+  flex: 1;
+  min-height: 0;
   padding: 2rem;
 }
 
@@ -170,6 +174,14 @@
   margin: 0 auto;
 }
 
+.page-view-events {
+  max-width: 800px;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .page-title {
   margin: 0 0 1.5rem;
   font-size: 2rem;
@@ -179,6 +191,12 @@
 .page-content {
   line-height: 1.6;
   color: var(--text-secondary);
+}
+
+.page-content-events {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
 /* Settings Panel */
